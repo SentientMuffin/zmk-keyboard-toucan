@@ -10,9 +10,9 @@
 #define FUNC  3
 #define XDRIV 4
 #define MDRIV 5
-#define MICE 7
-#define NAVI  8
-#define BT    9
+#define MICE  6
+#define NAVI  7
+#define BT    8
 
 &sk {
   quick-release;
