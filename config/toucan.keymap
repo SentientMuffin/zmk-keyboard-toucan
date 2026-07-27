@@ -9,8 +9,9 @@
 #define FUNC  3
 #define XDRIV 4
 #define MDRIV 5
-#define NAVI  6
-#define BT    7
+#define MICE 7
+#define NAVI  8
+#define BT    9
 
 &sk {
   quick-release;
@@ -37,11 +38,11 @@
   };
   combos {
     compatible = "zmk,combos";
-    combo_mouse {
+    combo_input_switch {
       timeout-ms = <50>;
       key-positions = <26 27>;
       layers = <0>;
-      bindings = <&kp BSPC>;
+      bindings = <&kp LA(SPACE)>;
     };
     combo_backspace {
       timeout-ms = <50>;
@@ -103,7 +104,7 @@
         &none &kp A &kp S         &kp D &kp F &kp G     &kp H &kp N         &kp K &kp O     &kp L    &none
         &none &kp Z &hltk XDRIV X &kp C &kp V &kp B     &kp J &hltk MDRIV M &kp P &sk LCTRL &kp CAPS &none
 
-        &none &mo NUMB &hltk NAVI SPACE         &kp LSHFT &mo SYMB &none
+        &tog MOUSE &mo NUMB &hltk NAVI SPACE         &kp LSHFT &mo SYMB &key_repeat
       >;
     };
 
@@ -181,9 +182,9 @@
     xdrive_layer {
       display-name = "XDRV";
       bindings = <
-        &none &none &none &none &none &none            &none &none &none        &none    &none &none &none 
-        &none &none &none &kp LA(SPACE) &none          &none &none &kp LA(BSPC) &kp BSPC &none &none &none 
-        &none &none &none &none &none &none            &none &none &none        &none    &none &none 
+        &none &none &none &none         &none &none            &none &none        &none    &none &none &none
+        &none &none &none &kp LA(SPACE) &none &none            &none &kp LA(BSPC) &kp BSPC &none &none &none
+        &none &none &none &none         &none &none            &none &none        &none    &none &none &none
 
         &none &none &key_repeat    &key_repeat &none &none
       >;
@@ -199,6 +200,17 @@
         &none &none &key_repeat    &key_repeat &none &none
       >;
     };
+
+    mice_layer {
+      display-name = "MICE";
+      bindings = <
+        &none  &msc SCRL_RIGHT &msc SCRL_UP   &msc SCRL_LEFT &mkp MCLK      &none          &none          &none        &none           &tog MOUSE
+        &none  &mkp MCLK       &mkp RCLK      &mkp LCLK      &none          &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none
+        &none  &none           &msc SCRL_DOWN &none          &none          &trans         &mkp MB4       &mkp MCLK    &mkp MB5        &none
+
+        &none &tog MICE &hltk NAV SPACE    &none &tog MICE &none
+      >;
+    }
 
     nav_layer {
       display-name = "Nav";
